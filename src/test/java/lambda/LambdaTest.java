@@ -1,10 +1,11 @@
-package chap01;
+package lambda;
 
 import org.junit.Test;
 
 import java.util.Comparator;
 import java.util.concurrent.Callable;
 import java.util.function.BiFunction;
+import java.util.function.Predicate;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
@@ -20,6 +21,12 @@ public class LambdaTest {
     public void test_lambda_with_implicit_type_paramter() throws Exception {
         Comparator<Long> longComparator = (first, second) -> Long.compare(first, second);
         assertThat(longComparator.compare(1L, 2L), lessThan(0));
+    }
+
+    @Test
+    public void test_lambda_with_single_parameter() throws Exception {
+        Predicate<String> predicate = t -> t.length() > 10;
+        assertThat(predicate.test("123"), equalTo(false));
     }
 
     @Test
